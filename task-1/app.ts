@@ -7,5 +7,3 @@ const sorter = (numbers: number[]) => {
   }
   return product;
 };
-
-console.log(sorter([1, 10, 2, 6, 5, 3]));
