@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
+import SearchBox from "./components/SearchBox.component";
 import StationList from "./components/StationList.component";
-import { StationInfo, StationStatus } from "./interfaces";
+import { StationInfo, StationStatus } from "./types";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 const App = () => {
+  const classes = useStyles();
+  const [searchValue, setSearchValue] = useState("");
   const [stationInfo, setStationInfo] = useState<null | StationInfo>(null);
   const [stationStatus, setStationStatus] = useState<null | StationStatus>(
     null
@@ -26,12 +39,18 @@ const App = () => {
     fetchData();
   }, []);
 
+  //makes sure all data is loaded
   const allLoaded = stationInfo && stationStatus;
   if (!allLoaded) return <h1>Laster...</h1>;
+  // decides whitch stations should be filtered out
+  const filteredStations = stationInfo.data.stations.filter((station) =>
+    station.name.toLowerCase().includes(searchValue.toLowerCase())
+  );
   return (
-    <div className="App">
+    <div className={classes.root}>
+      <SearchBox value={searchValue} setValue={setSearchValue} />
       <StationList
-        info={stationInfo.data.stations}
+        info={filteredStations}
         status={stationStatus.data.stations}
       />
     </div>
