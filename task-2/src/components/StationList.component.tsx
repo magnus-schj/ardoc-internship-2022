@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { InfoData, StatusData } from "../interfaces";
+import { InfoData, StatusData } from "../types";
 import { makeStyles } from "@material-ui/core/styles";
 import Station from "./Station.component";
 
