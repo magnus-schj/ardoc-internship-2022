@@ -44,7 +44,7 @@ const App = () => {
   //makes sure all data is loaded
   const allLoaded = stationInfo && stationStatus;
   if (!allLoaded) return <h1>Laster...</h1>;
-  console.log("stationInfo:", stationInfo);
+
   // decides whitch stations should be filtered out
   const filteredStations = stationInfo.data.stations.filter((station) =>
     station.name.toLowerCase().includes(searchValue.toLowerCase())
