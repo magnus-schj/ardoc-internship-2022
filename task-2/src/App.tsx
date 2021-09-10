@@ -3,6 +3,7 @@ import SearchBox from "./components/SearchBox.component";
 import StationList from "./components/StationList.component";
 import { StationInfo, StationStatus } from "./types";
 import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
   root: {
@@ -10,6 +11,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    padding: "4rem",
   },
 });
 
@@ -42,12 +44,16 @@ const App = () => {
   //makes sure all data is loaded
   const allLoaded = stationInfo && stationStatus;
   if (!allLoaded) return <h1>Laster...</h1>;
+  console.log("stationInfo:", stationInfo);
   // decides whitch stations should be filtered out
   const filteredStations = stationInfo.data.stations.filter((station) =>
     station.name.toLowerCase().includes(searchValue.toLowerCase())
   );
   return (
     <div className={classes.root}>
+      <Typography variant="h3" color="initial">
+        Bysykkel app
+      </Typography>
       <SearchBox value={searchValue} setValue={setSearchValue} />
       <StationList
         info={filteredStations}
