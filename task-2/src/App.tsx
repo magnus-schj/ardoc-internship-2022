@@ -26,7 +26,7 @@ const App = () => {
     const fetchData = async () => {
       // -----------------------------------------------------------------------------
       const infoResponse = await fetch(
-        "http://gbfs.urbansharing.com/oslobysykkel.no/station_information.json"
+        "https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json"
       );
       const data1JSON = await infoResponse.json();
       setStationInfo(data1JSON);
